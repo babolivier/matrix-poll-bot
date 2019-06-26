@@ -1,0 +1,8 @@
+# Configuration for the Matrix client.
+matrix:
+  # Access token to connect to the Matrix account.
+  access_token: TOKEN
+  # ID of the Matrix account.
+  user_id: "@poll:example.tld"
+  # URL of the homeserver to connect to.
+  hs_url: "https://matrix.example.tld"
