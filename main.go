@@ -254,7 +254,7 @@ func (h *handler) handleMembership(event *gomatrix.Event) {
 	if membership, ok := event.Content["membership"]; !ok || membership != "invite" {
 		return
 	}
-	logrus.Infof("Trying to join room %s I was invited to.\n", event.RoomID)
+	logrus.Infof("Trying to join room %s I was invited to", event.RoomID)
 	_, err := h.Client.JoinRoom(event.RoomID, "", struct{}{})
 	if err != nil {
 		logrus.Errorf("Failed to join room %s: %s\n", event.RoomID, err.Error())
