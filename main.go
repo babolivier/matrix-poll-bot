@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/matrix-org/gomatrix"
 	"github.com/pkg/errors"
@@ -251,14 +252,21 @@ func (h *handler) generateNoticeHTML(userID string, question string, choices map
 
 // handleMembership handles m.room.member events, and autojoins rooms it's invited in.
 func (h *handler) handleMembership(event *gomatrix.Event) {
+	var joinDelay time.Duration = 1
+
 	if membership, ok := event.Content["membership"]; !ok || membership != "invite" {
 		return
 	}
+
 	logrus.Infof("Trying to join room %s I was invited to", event.RoomID)
+
+	time.Sleep(joinDelay * time.Second)
 	_, err := h.Client.JoinRoom(event.RoomID, "", struct{}{})
 	if err != nil {
-		logrus.Errorf("Failed to join room %s: %s\n", event.RoomID, err.Error())
+		logrus.Errorf("Failed to join room %s: %s", event.RoomID, err.Error())
 	}
+
+	logrus.Infof("Successfully joined room %s", event.RoomID)
 }
 
 func main() {
