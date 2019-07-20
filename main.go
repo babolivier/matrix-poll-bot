@@ -300,7 +300,7 @@ func main() {
 	syncer.OnEventType("m.room.member", h.handleMembership)
 
 	logrus.Info("Syncing...")
-	if err := h.Client.Sync(0); err != nil {
+	if err := h.Client.Sync(); err != nil {
 		panic(errors.Wrap(err, "Sync returned with an error"))
 	}
 }
