@@ -20,3 +20,13 @@ go build
 ## Configure
 
 See [config.sample.yaml](/config.sample.yaml).
+
+## Docker
+
+```bash
+git clone https://github.com/babolivier/matrix-poll-bot.git
+cd matrix-poll-bot
+docker build -t matrix-poll-bot .
+docker run -v /path/to/config/dir:/data matrix-poll-bot
+# Add a file named 'config.yaml' to /path/to/config/dir
+```
