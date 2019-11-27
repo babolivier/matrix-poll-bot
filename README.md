@@ -3,6 +3,9 @@
 Matrix bot to do polls. What more do you need?
 
 ![image](https://user-images.githubusercontent.com/5547783/60209177-029b8e80-9852-11e9-8aee-c91d7ccaaec1.png)
+
+**Project status:** This was thought as a proof of concept rather than something I'm actually willing to maintain in the longer term. If you want to take it over, feel free to fork it. Otherwise I'm unlikely to find both time and motivation to work on it more than just merging PRs.
+
 ## Build
 
 ```bash
