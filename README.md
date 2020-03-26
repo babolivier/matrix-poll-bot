@@ -30,6 +30,48 @@ See [config.sample.yaml](/config.sample.yaml).
 git clone https://github.com/babolivier/matrix-poll-bot.git
 cd matrix-poll-bot
 docker build -t matrix-poll-bot .
-docker run -v /path/to/config/dir:/data matrix-poll-bot
 # Add a file named 'config.yaml' to /path/to/config/dir
+docker run -v /path/to/config/dir:/data matrix-poll-bot
+# For an automatic start on system boot, use this:
+docker run --restart=always --name=matrix-poll-bot -d -v /path/to/config/dir:/data matrix-poll-bot
 ```
+
+## Usage
+
+1. Create a user for PollBot - a non-admin user is sufficient
+```
+/usr/local/bin/matrix-synapse-register-user <pollbot-user> <pollbot-password> 0
+Sending registration request...
+Success!
+```
+
+2. Create an access token for the PollBot
+```
+curl --data '{"identifier": {"type": "m.id.user", "user": "<pollbot-user>" }, "password": "<pollbot-password>", "type": "m.login.password", "device_id": "PollBot", "initial_device_display_name": "PollBot"}' https://matrix.<your-matrix-server>/_matrix/client/r0/login
+{
+    "access_token": "",
+    "device_id": "PollBot",
+    "home_server": "<your-matrix-server>",
+    "user_id": "@<pollbot-user>:<your-domain>",
+    "well_known": {
+        "m.homeserver": {
+            "base_url": "https://matrix.<your-domain>/"
+        }
+    }
+}
+```
+
+3. Invite PollBot in the room you want to create polls
+```
+/invite @pollbot:<your-domain>
+```
+
+4. Create a poll
+```
+!poll <your-question>
+<emoji-1> Answer 1
+<emoji-2> Answer 2
+<emoji-3> Answer 3
+<...>
+```
+
