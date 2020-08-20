@@ -4,7 +4,7 @@ Matrix bot to do polls. What more do you need?
 
 ![image](https://user-images.githubusercontent.com/5547783/60209177-029b8e80-9852-11e9-8aee-c91d7ccaaec1.png)
 
-**Project status:** This was thought as a proof of concept rather than something I'm actually willing to maintain in the longer term. If you want to take it over, feel free to fork it. Otherwise I'm unlikely to find both time and motivation to work on it more than just merging PRs.
+Note that this bot is a proof of concept and it's unlikely I'll do any work on it in the future. I'm happy to review and merge PRs though.
 
 ## Build
 
@@ -75,3 +75,6 @@ curl --data '{"identifier": {"type": "m.id.user", "user": "<pollbot-user>" }, "p
 <...>
 ```
 
+### End-to-end encryption
+
+This bot doesn't have native E2EE support. If you want to use it in encrypted rooms, the easiest option is probably to run it through [pantalaimon](https://github.com/matrix-org/pantalaimon).
