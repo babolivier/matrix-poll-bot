@@ -25,6 +25,7 @@ type config struct {
 		AccessToken string `yaml:"access_token"`
 		UserID      string `yaml:"user_id"`
 		HSURL       string `yaml:"hs_url"`
+		SkipFilter  bool   `yaml:"skip_filter"`
 	}
 }
 
@@ -290,9 +291,11 @@ func main() {
 		panic(errors.Wrap(err, "Couldn't initialise the Matrix client"))
 	}
 
-	filterID := h.setupFilter()
+	if !cfg.Matrix.SkipFilter {
+		filterID := h.setupFilter()
 
-	h.Client.Store.SaveFilterID(cfg.Matrix.UserID, filterID)
+		h.Client.Store.SaveFilterID(cfg.Matrix.UserID, filterID)
+	}
 
 	syncer := h.Client.Syncer.(*gomatrix.DefaultSyncer)
 

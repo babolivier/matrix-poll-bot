@@ -6,3 +6,8 @@ matrix:
   user_id: "@poll:example.tld"
   # URL of the homeserver to connect to.
   hs_url: "https://matrix.example.tld"
+  # Whether to skip registering a filter on the homeserver. Defaults to false.
+  # Skipping filter creation might degrade performance, but not doing it can cause issues
+  # when e.g. trying to run the bot against pantalaimon to support end-to-end encrypted
+  # rooms.
+  skip_filter: false
